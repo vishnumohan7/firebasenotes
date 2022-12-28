@@ -3,6 +3,7 @@ import 'package:firebasenotes/src/models/user_model.dart';
 import 'package:firebasenotes/src/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -22,40 +23,67 @@ class _SignupPageState extends State<SignupPage> {
     return BlocProvider(
       create: (context) => AuthCubit(),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("Signup"),
-        ),
+        backgroundColor: Color.fromRGBO(31, 29, 43, 1),
         body: Form(
           child: Padding(
-            padding: const EdgeInsets.all(32.0),
+            padding: const EdgeInsets.only(left: 32.0,right: 32,bottom: 32),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 0.0, left: 30, right: 30),
+                  child: Image.asset("assets/images/illus.png",height: 140,),
+                ),
                 TextFormField(
+                  style: TextStyle(color: Colors.white),
+
                   controller: _emailController,
                   decoration: InputDecoration(
-                    labelText: "Email",
+                    labelText: "Email",labelStyle: GoogleFonts.mulish(color: Colors.white),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(7),
+                          borderSide: BorderSide(
+                              color: Colors.white))
                   ),
                 ),
                 SizedBox(
                   height: 15,
                 ),
                 TextFormField(
+                  style: TextStyle(color: Colors.white),
+
                   controller: _passwordController,
-                  decoration: InputDecoration(labelText: "Password"),
+                  decoration: InputDecoration(labelText: "Password",labelStyle: GoogleFonts.mulish(color: Colors.white),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(7),
+                          borderSide: BorderSide(
+                              color: Colors.white))),
                 ),
                 SizedBox(
                   height: 15,
                 ),
                 TextFormField(
+                  style: TextStyle(color: Colors.white),
+
                   controller: _nameController,
-                  decoration: InputDecoration(labelText: "Name"),
+                  decoration: InputDecoration(labelText: "Name",labelStyle: GoogleFonts.mulish(color: Colors.white),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(7),
+                          borderSide: BorderSide(
+                              color: Colors.white))),
                 ),
                 SizedBox(
                   height: 15,
                 ),
                 TextFormField(
+                  style: TextStyle(color: Colors.white),
+
                   controller: _mobNoController,
-                  decoration: InputDecoration(labelText: "Mobile"),
+                  decoration: InputDecoration(labelText: "Mobile",labelStyle: GoogleFonts.mulish(color: Colors.white),enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(7),
+                      borderSide: BorderSide(
+                          color: Colors.white))
+                  ),
                 ),
                 SizedBox(
                   height: 15,
@@ -101,9 +129,24 @@ class _SignupPageState extends State<SignupPage> {
                           );
                           context.read<AuthCubit>().createUser(user);
                         },
-                        child: Text("Signup"));
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                                Color.fromRGBO(111, 111, 200, 1))),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 110,right: 110,top: 10,bottom: 10),
+                          child: Text("Signup"),
+                        ));
                   },
-                )
+                ),
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => LoginPage()));
+                    },
+                    child: Text(
+                      "Already Have an Account , Login Here",
+                      style: GoogleFonts.mulish(color: Colors.white),
+                    )),
               ],
             ),
           ),

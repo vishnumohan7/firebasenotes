@@ -3,6 +3,7 @@ import 'package:firebasenotes/src/models/notes_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AddnotePage extends StatefulWidget {
   const AddnotePage({Key? key}) : super(key: key);
@@ -20,25 +21,40 @@ class _AddnotePageState extends State<AddnotePage> {
     return BlocProvider(
       create: (context) => NotesCubit(),
       child: Scaffold(
+        backgroundColor: Color.fromRGBO(31, 29, 43, 1),
         appBar: AppBar(
-          title: Text("Add New Note"),
+          backgroundColor: Color.fromRGBO(31, 29, 43, 1),
+          title: Text("Add New Note",style: GoogleFonts.montserratAlternates(fontSize: 16),),
           centerTitle: true,
         ),
         body: Form(
           child: Padding(
             padding: const EdgeInsets.all(32.0),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextFormField(
                   controller: _titleConrtoller,
-                  decoration: InputDecoration(labelText: "Title"),
+                  decoration: InputDecoration(labelText: "Title", labelStyle: GoogleFonts.mulish(color: Colors.white),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(7),
+                    borderSide: BorderSide(
+                      color: Colors.white
+                    )
+                  )),
                 ),
                 SizedBox(
                   height: 15,
                 ),
                 TextFormField(
                   controller: _descriptionController,
-                  decoration: InputDecoration(labelText: "Description"),
+                  decoration: InputDecoration(labelText: "Description", labelStyle: GoogleFonts.mulish(color: Colors.white),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(7),
+                          borderSide: BorderSide(
+                              color: Colors.white
+                          )
+                      )),
                 ),
                 SizedBox(
                   height: 15,
@@ -69,8 +85,13 @@ class _AddnotePageState extends State<AddnotePage> {
                               title: _titleConrtoller.text,
                               description: _descriptionController.text);
                           context.read<NotesCubit>().createNote(notesModel);
-                        },
-                        child: Text("Add Note"));
+                        },style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Color.fromRGBO(111, 111, 200, 1))
+                    ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 100.0,right: 100,top: 10,bottom: 10),
+                          child: Text("Add Note"),
+                        ));
                   },
                 )
               ],
